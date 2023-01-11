@@ -33,10 +33,11 @@ const bwhit12 = Color(0xFFF4F4F4);
 const bwhite1 = Color(0xFFFFFFFF);
 
 // Text color
-const tActive = Color(0xff0cabdf);
+const buttonActive = Color.fromRGBO(245, 86, 0, 1);
 const tInActive = Color(0xff75808a);
 const tPrimarylight = Color(0xff000000);
 const tSecoundaryLight = Color(0xff75808a);
 const tPrimaryDark = Color(0xfff4f4f4);
 const tSecoundarydark = Color(0xff8c8c8e);
 const tCardSub = Color(0xffc8d8e4);
+const textcolor=Color(0xFF768692);

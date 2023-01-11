@@ -1,19 +1,18 @@
+import '../layout/alert_dialog.dart';
 
-String? validateEmail(String? text) {
-  if (text == null || text.isEmpty) {
-    return 'Email is required';
-  } else if (!RegExp(r'\S+@\S+\.\S+').hasMatch(text)) {
-    return 'Invalid email address ';
-  }
-  return null;
-}
+Future<bool> EmailValidator(String? value, context) async {
+  print("Step 1");
+  String pattern =
+      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+      r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+      r"{0,253}[a-zA-Z0-9])?)*$";
+  RegExp regex = RegExp(pattern);
 
-String? validatePassword(String? text) {
-  if (text == null || text.isEmpty) {
-    return 'Password is required';
-  } else if (!RegExp(r'^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-      .hasMatch(text)) {
-    return 'Invalid password';
+  if (value == "") {
+    print("Step 2");
+    await AlertDialogs.yesCancelDialog(context, "yes", "Enter the email");
+  } else if (!regex.hasMatch(value!)) {
+    await AlertDialogs.yesCancelDialog(context, "yes", "Enter the valid email");
   }
-  return null;
+  return false;
 }

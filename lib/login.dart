@@ -1,12 +1,12 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unnecessary_new
-
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:fyxt_maintance/reusable_widget.dart';
+import 'package:fyxt_maintance/services/postapi.dart';
+import 'package:fyxt_maintance/theme/colors.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import 'package:path/path.dart';
 import 'package:flutter/services.dart';
+
+import 'extension/validator.dart';
+import 'layout/alert_dialog.dart';
+import 'layout/loginmodel.dart';
 
 class fyxt extends StatefulWidget {
   const fyxt({Key? key}) : super(key: key);
@@ -16,15 +16,18 @@ class fyxt extends StatefulWidget {
 }
 
 class _fyxtState extends State<fyxt> {
+  late LoginRequestModel loginRequestModel;
   bool? isChecked = false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   String? email, password;
   final _formKey = GlobalKey<FormState>();
-  String _userEmail = '';
-  String _password = '';
 
-  var status;
+  @override
+  void initState() {
+    super.initState();
+    //
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +55,7 @@ class _fyxtState extends State<fyxt> {
                         child: Container(
                             width: 106,
                             height: 66,
-                            /*decoration: BoxDecoration(_trySubmitForm,
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
-                            child: Image.asset('assets/images/fxyt.png')),
+                            child: Image.asset("assets/images/fxyt.webp")),
                       ),
                     ),
                     new Center(
@@ -72,14 +72,49 @@ class _fyxtState extends State<fyxt> {
                     const SizedBox(
                       height: 10,
                     ),
-                    reusableTextField(
-                        "User Name", Colors.white, false, emailController),
+                    Container(
+                      height: 40,
+                      width: 333,
+                      child: TextFormField(
+                          controller: emailController,
+                          onSaved: (input) => loginRequestModel.email,
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(vertical: 1),
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintStyle: TextStyle(
+                                color: Color.fromRGBO(118, 128, 146, 1),
+                                fontSize: 12),
+                            hintText: "Username",
+                          )),
+                    ),
                     const SizedBox(
                       height: 15,
                     ),
-                    reusableTextField(
-                        "Password", Colors.white, true, passwordController),
-
+                    Container(
+                      height: 40,
+                      width: 333,
+                      child: TextFormField(
+                        controller: passwordController,
+                        onSaved: (input) => loginRequestModel.password,
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 10,
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintStyle: TextStyle(
+                              color: Color.fromRGBO(118, 128, 146, 1),
+                              fontSize: 12),
+                          hintText: "Password",
+                        ),
+                        obscureText: true,
+                      ),
+                    ),
                     const SizedBox(height: 15),
                     Container(
                       height: 40,
@@ -91,7 +126,6 @@ class _fyxtState extends State<fyxt> {
                         value: isChecked,
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) {
-                          // This is where we update the state when the checkbox is tapped
                           setState(() {
                             isChecked = value;
                           });
@@ -105,40 +139,97 @@ class _fyxtState extends State<fyxt> {
                     const SizedBox(
                       height: 10,
                     ),
-                    //Checkbox
-                    //       loginpage()));
-                    //  },
-                    reusablsigninfield(
-                        "Log In", const Color(0xFFf56c56), false),
+                    Container(
+                      height: 40,
+                      width: 333,
+                      decoration: BoxDecoration(
+                        color: buttonActive,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: buttonActive),
+                        onPressed: () async {
+                          Navigator.of(context).pushNamed('/environment');
+                          await EmailValidator(emailController.text, context);
+                          APIService apiService = new APIService();
+                          apiService
+                              .login(loginRequestModel = new LoginRequestModel(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                  passowrd: ''))
+                              .then((value) {
+                            if (value != null) {
+                              setState(() {
+                                print('valid user good!!');
+                              });
+                              if (value.token.isNotEmpty) {
+                                Navigator.of(context).pushNamed('/environment');
+                              } else {
+                                AlertDialogs.yesCancelDialog(
+                                    context, "yes", value.error);
+                              }
+                            }
+                          });
+                        },
+                        child: Text(
+                          "login",
+                        ),
+                      ),
+                    ),
                     const SizedBox(
                       height: 3,
                     ),
-                    const Center(child: Text("or")),
+                    const Center(
+                      child: Text(
+                        "or",
+                        style: TextStyle(color: bglight),
+                      ),
+                    ),
                     const SizedBox(
                       height: 3,
                     ),
-                    reusablsigninfield(
-                        "Log In With SSO", const Color(0xFFf56c56), false),
+                    Container(
+                      height: 40,
+                      width: 333,
+                      decoration: BoxDecoration(
+                        color: buttonActive,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(primary: buttonActive),
+                        child: Text(
+                          "Log in  With SSO",
+                          style: TextStyle(color: bglight),
+                        ),
+                      ),
+                    ),
                   ]))),
-          Expanded(
-            child: Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/forgotpassword');
-                },
-                child: const Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Roboto-Bold',
-                    color: Colors.white,
+          Flex(direction: Axis.horizontal, children: [
+            Expanded(
+              child: Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/forgotpassword');
+                  },
+                  child: const Text(
+                    'Forgot Password?',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Roboto-Bold',
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+            SizedBox(
+              height: 20,
+            ),
+            Container()
+          ]),
         ],
       ),
     );
