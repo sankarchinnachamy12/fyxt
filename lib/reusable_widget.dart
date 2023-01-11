@@ -36,41 +36,8 @@ Container reusableTextField(String text, Color fillColor,
       ));
 }
 
-Container reusablsigninfield(String text, Color fillColor,
-    [bool? isPasswordType, TextEditingController? controller]) {
-  return Container(
-      height: 40,
-      width: 333,
-      child: TextField(
-        controller: controller,
-        obscureText: isPasswordType!,
-        enableSuggestions: isPasswordType,
-        autocorrect: isPasswordType,
-        cursorColor: Color.fromRGBO(
-          118,
-          128,
-          146,
-          1,
-        ),
-        textAlign: TextAlign.center,
-        //style: TextStyle(color: Colors.white.withOpacity(0.5)),
-        decoration: InputDecoration(
-          hintStyle: const TextStyle(color: Colors.white),
-          contentPadding: const EdgeInsets.symmetric(vertical: 1),
-          hintText: text,
 
-          filled: true,
-          //floatingLabelBehavior: FloatingLabelBehavior.never,
-          fillColor: fillColor,
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
-        ),
-        keyboardType: isPasswordType
-            ? TextInputType.visiblePassword
-            : TextInputType.emailAddress,
-      ));
-}
+
 
 Container signINSignUpButton(
     BuildContext context, bool isLogin, Function onTap) {

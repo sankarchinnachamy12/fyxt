@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fyxt_maintance/reusable_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../extension/validator.dart';
+import '../layout/alert_dialog.dart';
+import '../layout/loginmodel.dart';
+import '../services/postapi.dart';
+import '../theme/colors.dart';
+
 class forgotpassword extends StatefulWidget {
   const forgotpassword({super.key});
   @override
@@ -10,6 +16,7 @@ class forgotpassword extends StatefulWidget {
 
 class _forgotpasswordState extends State<forgotpassword> {
   TextEditingController forgotController = TextEditingController();
+  late LoginRequestModel loginRequestModel;
   String? email;
   final _formKey = GlobalKey<FormState>();
   String _userEmail = '';
@@ -51,7 +58,7 @@ class _forgotpasswordState extends State<forgotpassword> {
                             /*decoration: BoxDecoration(_trySubmitForm,
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-                            child: Image.asset('assets/images/fxyt.png')),
+                            child: Image.asset("assets/images/fxyt.webp")),
                       ),
                     ),
                     SizedBox(
@@ -72,18 +79,47 @@ class _forgotpasswordState extends State<forgotpassword> {
                     ),
                     Center(
                         child: Text(
-                            "Enter your email and we'll send you a link to \n             reset your password",
-                            style: TextStyle(color: Color(0xFF768692)))),
+                            "Enter your email and we'll send you a link to \n reset your password",
+                            style: TextStyle(color: Color(0xFF768692),))),
                     const SizedBox(
                       height: 40,
                     ),
-                    reusableTextField(
-                        "Email", Colors.white, false, forgotController),
-                    const SizedBox(
+                    Container(
+                      height: 40,
+                      width: 333,
+                      child: TextFormField(
+                          controller: forgotController,
+                          onSaved: (input) => loginRequestModel.email,
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(vertical: 1),
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintStyle: TextStyle(
+                                color: Color.fromRGBO(118, 128, 146, 1),
+                                fontSize: 12),
+                            hintText: "Email",
+                          )),
+                    ),
+                    SizedBox(
                       height: 20,
                     ),
-                    reusablsigninfield(
-                        "Submit", const Color(0xFFf56c56), false),
+                    Container(
+                      height: 40,
+                      width: 333,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: buttonActive),
+                        onPressed: () async {
+                           await EmailValidator(forgotController.text, context);
+                            Navigator.of(context).pushNamed('/backtologin');
+                          },
+
+                        child: Text(
+                          "Submit",
+                        ),
+                      ),
+                    ),
                   ]))),
         ],
       ),
