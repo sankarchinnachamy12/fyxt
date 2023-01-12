@@ -77,10 +77,12 @@ class _forgotpasswordState extends State<forgotpassword> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Center(
-                        child: Text(
-                            "Enter your email and we'll send you a link to \n reset your password",
-                            style: TextStyle(color: Color(0xFF768692),))),
+                         Text(
+                           textAlign:TextAlign.center,
+                            "Enter your email and we'll send you a link \n"
+                                +"to reset your password",
+                            style: TextStyle(color: Color(0xFF768692),)
+                        ),
                     const SizedBox(
                       height: 40,
                     ),
@@ -93,6 +95,7 @@ class _forgotpasswordState extends State<forgotpassword> {
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
                             contentPadding: EdgeInsets.symmetric(vertical: 1),
                             filled: true,
                             fillColor: Colors.white,

@@ -39,13 +39,10 @@ class _backtologinState extends State<backtologin> {
               padding: const EdgeInsets.only(top: 106),
               child: Center(
                 child: SizedBox(
-                    width: 106,
+                    //width: 106,
                     height: 66,
                     child: Image.asset("assets/images/fxyt.webp")),
               ),
-            ),
-            SizedBox(
-              height: 40,
             ),
             new Center(
               child: new Text('Thanks',

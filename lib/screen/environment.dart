@@ -89,15 +89,16 @@ class myapp extends StatelessWidget {
                      const SizedBox(
                        height: 40,
                      ),
-                     SingleChildScrollView(
+                     Container(
+                       height: 80,
+                       child:ListView(
                        scrollDirection: Axis.horizontal,
-                       child: Row(
-                           mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                           //mainAxisAlignment:MainAxisAlignment.spaceBetween,
                           // crossAxisAlignment: CrossAxisAlignment.center,
                            children:[
                              Container(
                                height: 100,
-                               width: 162,
+                               width: 200,
                                alignment: Alignment.center,
                                margin: const EdgeInsets.only(left: 10.0),
                                decoration: BoxDecoration(
@@ -112,20 +113,18 @@ class myapp extends StatelessWidget {
                                  onPressed: () {
 
                                  },
-
                                  child: Center(
-                                   child: Text("",style:  TextStyle(fontSize: 16,
+                                   child: Text("Krishina",style:  TextStyle(fontSize: 16,
                                        color: Color.fromRGBO(17, 35, 46, 1),fontWeight: FontWeight.bold,fontFamily: "Roboto"),),
                                  ),
                                ),
                              ),
                              SizedBox(
                                width: 5 ,
-
                              ),
                              Container(
                                height: 100,
-                               width: 162,
+                               width: 200,
                                alignment: Alignment.center,
                                margin: const EdgeInsets.only(left: 4.0),
                                decoration: BoxDecoration(
@@ -141,16 +140,15 @@ class myapp extends StatelessWidget {
                                    // Navigator.push(
                                    //     context, MaterialPageRoute(builder: (_) => splashScreen()));
                                  },
-
                                  child: Center(
-                                   child: Text("",style:  TextStyle(fontSize: 16,
+                                   child: Text("krishina",style:  TextStyle(fontSize: 16,
                                        color: Color.fromRGBO(17, 35, 46, 1),fontWeight: FontWeight.bold),),
                                  ),
                                ),
                              ),
                            ]
-                       ),
-                     ),
+                       ),),
+
                     // scrolldown(),
                      SizedBox(
                        height: 20,
@@ -167,9 +165,7 @@ class myapp extends StatelessWidget {
                        ),
                      ),
                    ])
-             ])
-
-
+               ])
      );
    }
  }

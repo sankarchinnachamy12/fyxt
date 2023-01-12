@@ -18,23 +18,23 @@ class APIService {
         json.decode(response.body),
       );
     } else {
-      throw Exception('Failed to load data!');
+      throw Exception(response.reasonPhrase);
     }
   }
 }
-
+//
 //   Future <List<ServiceResponseModel>?> getServiceType() async {
 //     try {
-//       var url = Uri.parse(ApiConstants.tenantUrl + ApiConstants.servicetype);
+//       var url = Uri.parse(ApiConstants.forgotpasswordurl);
 //       print(url);
-//       var response = await http.get(url, headers: ApiHeaders.tenantHeader);
+//       var response = await http.post(url, headers: ApiHeaders.tenantHeader);
 //       print(response.statusCode);
 //       print(response.body);
-//       if (response.statusCode == 200) {
+//       if (response.statusCode == 201) {
 //
 //       }
 //     } catch (e) {
-//       log(e.toString());
+//       (e.toString());
 //     }
 //   }
-// }
+// // }
