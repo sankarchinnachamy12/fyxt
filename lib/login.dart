@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fyxt_maintance/services/postapi.dart';
+import 'package:fyxt_maintance/services/servererror.dart';
 import 'package:fyxt_maintance/theme/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
@@ -18,12 +19,13 @@ class fyxt extends StatefulWidget {
 
 class _fyxtState extends State<fyxt> {
   late LoginRequestModel loginRequestModel;
+
+     //late final _loading;
   bool? isChecked = false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   String? email, password;
   final _formKey = GlobalKey<FormState>();
-
   @override
   void initState() {
     _loadUserEmailPassword();
@@ -50,7 +52,7 @@ class _fyxtState extends State<fyxt> {
                   key: _formKey,
                   child: Column(children: <Widget>[
                     Padding(
-                        padding: EdgeInsets.only(top: 106),
+                        padding: EdgeInsets.only(top: 50),
                         child: Column(children: [
                           Center(
                             child: Container(
@@ -163,8 +165,10 @@ class _fyxtState extends State<fyxt> {
                               style: ElevatedButton.styleFrom(
                                   primary: buttonActive),
                               onPressed: () async {
+                                _submit();
                                 // Navigator.of(context).pushNamed('/environment');
                                 await EmailValidator(
+
                                     emailController.text, context);
                                 APIService apiService = new APIService();
                                 apiService
@@ -282,4 +286,28 @@ class _fyxtState extends State<fyxt> {
       print(e);
     }
   }
+  void _submit() {
+    // Show a loading spinner while the validation is in progress
+    setState(() {
+      isChecked = true;
+    });
+
+    // Validate the email and password
+    validateCredentials(emailController.text, passwordController.text).then((result) {
+      // Hide the loading spinner
+      setState(() {
+        isChecked = false;
+      });
+
+      // Show a success or error message
+      if( validateCredentials==true) {
+        print("enter the good value");
+      } else {
+        AlertDialogs.yesCancelDialog(context, 'yes', '${ result}');
+
+      }
+      //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(result)));
+    });
+  }
 }
+

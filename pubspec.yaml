@@ -40,7 +40,6 @@ flutter_native_splash:
   android: true
   ios: true
   web: true
-  background_image: "./assets/images/group_12.png"
   image: "./assets/images/fxyt.png"
   
 
