@@ -7,7 +7,6 @@ Future<bool> EmailValidator(String? value, context) async {
       r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
       r"{0,253}[a-zA-Z0-9])?)*$";
   RegExp regex = RegExp(pattern);
-
   if (value == "") {
     print("Step 2");
     await AlertDialogs.yesCancelDialog(context, "yes", "Enter the email");

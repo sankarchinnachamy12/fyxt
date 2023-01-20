@@ -3,6 +3,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class ApiHeaders {
   static get token => null;
 
+  Object? get domains => null;
+
   @override
   void initState() {
     Future<String?> token = FlutterSecureStorage().read(key: 'jwt');

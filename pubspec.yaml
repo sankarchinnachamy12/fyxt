@@ -32,16 +32,15 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^3.0.1
-  flutter_launcher_icons: ^0.9.0
   get: ^4.6.5
   flutter_native_splash: ^2.2.8
   flutter_secure_storage: ^7.0.1
+  shared_preferences: ^2.0.15
 flutter_native_splash:
   android: true
   ios: true
   web: true
-  background_image: "./assets/images/group_12.png"
-  image: "./assets/images/fxyt.png"
+  image: "./assets/images/fxyt.webp"
   
 
 
@@ -53,13 +52,6 @@ flutter_native_splash:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter_icons:
-  android: true
-  ios: true
-  image_path: "assets/images/fxyt.jpg"
-  remove_alpha_ios: true
-
 
 
 
