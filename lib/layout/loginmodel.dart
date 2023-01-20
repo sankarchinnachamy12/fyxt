@@ -9,7 +9,7 @@ class LoginResponseModel {
     return LoginResponseModel(
       token: json["token"] != null ? json["token"] : "",
       error: json["error"] != null ? json["error"] : "",
-      domains: json["domain"] != null ? json["domain"] : "",
+      domains: json["domains"] != null ? json["domains"] : "",
     );
   }
 }
@@ -35,31 +35,31 @@ class LoginRequestModel {
 }
 
 
-class LoginResponseModel1 {
-  final String token;
-  final String error;
-  LoginResponseModel1({required this.token, required this.error});
-  factory LoginResponseModel1.fromJson(Map<String, dynamic> json) {
-    print(json["token"]);
-    return LoginResponseModel1(
-      token: json["token"] != null ? json["token"] : "",
-      error: json["error"] != null ? json["error"] : "",
-    );
-  }
-}
-
-class LoginRequestModel1 {
-  String email;
-
-  LoginRequestModel1({
-    required this.email,
-  });
-
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> map = {
-      "email": email.trim(),
-    };
-
-    return map;
-  }
-}
+// class LoginResponseModel1 {
+//   final String token;
+//   final String error;
+//   LoginResponseModel1({required this.token, required this.error});
+//   factory LoginResponseModel1.fromJson(Map<String, dynamic> json) {
+//     print(json["token"]);
+//     return LoginResponseModel1(
+//       token: json["token"] != null ? json["token"] : "",
+//       error: json["error"] != null ? json["error"] : "",
+//     );
+//   }
+// }
+//
+// class LoginRequestModel1 {
+//   String email;
+//
+//   LoginRequestModel1({
+//     required this.email,
+//   });
+//
+//   Map<String, dynamic> toJson() {
+//     Map<String, dynamic> map = {
+//       "email": email.trim(),
+//     };
+//
+//     return map;
+//   }
+// }

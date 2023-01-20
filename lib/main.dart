@@ -16,6 +16,6 @@ class myapp extends StatelessWidget {
         initialRoute: "/",
         onGenerateRoute: RouteGenerator.generateRoute,
         debugShowCheckedModeBanner: false,
-        home: Scaffold(body: fyxt()));
+        home: Scaffold(body:fyxt()));
   }
 }

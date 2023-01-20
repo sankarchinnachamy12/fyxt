@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:fyxt_maintance/services/postapi.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../layout/loginmodel.dart';
+import '../services/domainmodel.dart';
 import '../theme/colors.dart';
 import '../theme/colors.dart';
 
@@ -18,9 +20,12 @@ class _environmentscreenState extends State<environmentscreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     bool isSelected = false;
+    bool _selected =false;
+    APIService1 apiService1=APIService1();
 
     LoginResponseModel? val;
-    
+    print("**********************************************");
+    print(val);
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -77,20 +82,23 @@ class _environmentscreenState extends State<environmentscreen> {
 
             GestureDetector(
               onTap: () {
-                // if (isSelected = false) {
-                //   isSelected = true;
-                // } else {
-                //   isSelected = false;
-                // }
-                // setState(() {});
-              },
+                Navigator.of(context).pushNamed('/dashboard');
+            // if (isSelected = false) {
+            //   isSelected = true;
+            // } else {DomainModel
+            //   isSelected = false;
+            // }
+            // setState(() {});
+            },
               child: Container(
                 height: 120,
                 width: 333,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: val?.domains.length,
-                    itemBuilder: (context, index) => Padding(
+                    itemCount: val?.domains!.length,
+                    itemBuilder: (context, ind) => ElevatedButton(onPressed: (){},
+                        child:
+                        Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Container(
                               height: 200,
@@ -99,14 +107,21 @@ class _environmentscreenState extends State<environmentscreen> {
                                 //color: Colors.white,
                                 color: isSelected ? Colors.red : Colors.white,
                                 borderRadius: BorderRadius.circular(10),
-                              ),
+                                      border: Border.all(
+                                      color: _selected?Colors.red:Colors.white,
+                                      width: 5,
+
+                              ),),
                               child: Center(
-                                child: Text('${"" }'),
+
+                                child: Text('${val?.domains?[0]?.name}'),
                               )),
                         )),
 
               ),
+
               ),
+            )]),
             // scrolldown(),
             SizedBox(
               height: 20,
@@ -116,13 +131,13 @@ class _environmentscreenState extends State<environmentscreen> {
               width: 333,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(primary: buttonActive),
-                onPressed: () async {},
+                onPressed: ()  {},
                 child: Text(
                   "Enter",
                 ),
               ),
             ),
           ]),
-        ]));
+    );
   }
 }

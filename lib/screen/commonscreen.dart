@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
+class commonbackground extends StatelessWidget {
+  const commonbackground({Key? key}) : super(key: key);
 
-commonbackground() {
-  Column(children: [
-    new Container(
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       decoration: const BoxDecoration(
         image: const DecorationImage(
           image: const AssetImage("assets/images/group_12.png"),
           fit: BoxFit.cover,
         ),
       ),
-    ),
-    Column(children: [
-      Padding(
-        padding: const EdgeInsets.only(top: 106),
-        child: Center(
-          child: SizedBox(
-         //width: 106,
-              height: 66,
-              child: Image.asset("assets/images/fxyt.webp")),
-        ),
-      )
-    ])
-  ]);
+    );
+  }
 }

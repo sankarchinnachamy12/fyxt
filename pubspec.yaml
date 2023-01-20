@@ -40,7 +40,7 @@ flutter_native_splash:
   android: true
   ios: true
   web: true
-  image: "./assets/images/fxyt.png"
+  image: "./assets/images/fxyt.webp"
   
 
 

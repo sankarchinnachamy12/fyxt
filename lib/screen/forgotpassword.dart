@@ -67,10 +67,10 @@ class _forgotpasswordState extends State<forgotpassword> {
                       ),
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 50,
                     ),
                     new Center(
-                      child: new Text('Forgot Password',
+                      child: new Text('Forgot Password?',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.roboto(
                             fontWeight: FontWeight.bold,
@@ -79,13 +79,11 @@ class _forgotpasswordState extends State<forgotpassword> {
                             color: Colors.white,
                           )),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+
+                         SizedBox(height: 5,),
                          Text(
                            textAlign:TextAlign.center,
-                            "Enter your email and we'll send you a link \n"
-                                +"to reset your password",
+                            "Enter your email and we'll send you a link to reset your\n"+" password",
                             style: TextStyle(color: Color(0xFF768692),)
                         ),
                     const SizedBox(
@@ -111,7 +109,7 @@ class _forgotpasswordState extends State<forgotpassword> {
                           )),
                     ),
                     SizedBox(
-                      height: 20,
+                      height:20,
                     ),
                     Container(
                       height: 40,

@@ -9,7 +9,6 @@ class ApiHeaders {
   void initState() {
     Future<String?> token = FlutterSecureStorage().read(key: 'jwt');
     print(token);
-   // print(domains);
   }
 
   static Map<String, String> baseHeader = {
